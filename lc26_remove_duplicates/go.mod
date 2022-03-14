@@ -1,4 +1,4 @@
-module github.com/arrownj/leetcode/lc22_generate_parentheses
+module github.com/arrownj/leetcode/lc26_remove_duplicates
 
 go 1.17
 

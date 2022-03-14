@@ -1,4 +1,4 @@
-module github.com/arrownj/leetcode/lc22_generate_parentheses
+module github.com/arrownj/leetcode/lc100_same_tree
 
 go 1.17
 

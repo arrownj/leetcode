@@ -1,21 +1,27 @@
-package generate_parentheses
-
-var ret = []string{}
+package main
 
 func GenerateParentheses(n int) []string {
-	ret = []string{}
-	dfs(n, 0, 0, "")
-	return ret
-}
-
-func dfs(n, leftCount, rightCount int, val string) {
-	if leftCount == n && rightCount == n {
-		ret = append(ret, val)
+	if n == 0 {
+		return []string{}
 	}
-	if leftCount < n {
-		dfs(n, leftCount+1, rightCount, val+"(")
+	if n <= 1 {
+		return []string{"()"}
 	}
-	if leftCount > rightCount && rightCount < n {
-		dfs(n, leftCount, rightCount+1, val+")")
+	dp := [][]string{
+		[]string{""},
+		[]string{"()"},
 	}
+	for i := 2; i <= n; i++ {
+		iResult := []string{}
+		for p := 0; p < i; p++ {
+			q := i - p - 1
+			for _, pItem := range dp[p] {
+				for _, qItem := range dp[q] {
+					iResult = append(iResult, "("+pItem+")"+qItem)
+				}
+			}
+		}
+		dp = append(dp, iResult)
+	}
+	return dp[n]
 }

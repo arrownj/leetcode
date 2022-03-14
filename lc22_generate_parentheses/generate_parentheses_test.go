@@ -1,31 +1,25 @@
-package generate_parentheses
+package main
 
 import (
-	"reflect"
 	"testing"
-	"github.com/deckarep/golang-set"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGenerateParentheses(t *testing.T) {
-	got := GenerateParentheses(1)
 	want := []string{"()"}
-	if !reflect.DeepEqual(want, got) {
-		t.Errorf("want: %v, got: %v", want, got)
-	}
+	got := GenerateParentheses(1)
+	assert.ElementsMatchf(t, want, got, "want: %v, got: %v", want, got)
 }
 
 func TestGenerateParentheses1(t *testing.T) {
-	got := mapset.NewSetFromSlice(GenerateParentheses(2))
-	want := mapset.NewSetFromSlice([]string{"()()", "(())"})
-	if !want.Equal(got) {
-		t.Errorf("want: %v, got: %v", want, got)
-	}
+	want := []string{"()()", "(())"}
+	got := GenerateParentheses(2)
+	assert.ElementsMatchf(t, want, got, "want: %v, got: %v", want, got)
 }
 
 func TestGenerateParentheses2(t *testing.T) {
-	got := GenerateParentheses(3)
 	want := []string{"((()))", "(()())", "(())()", "()(())", "()()()"}
-	if !reflect.DeepEqual(want, got) {
-		t.Errorf("want: %v, got: %v", want, got)
-	}
+	got := GenerateParentheses(3)
+	assert.ElementsMatchf(t, want, got, "want: %v, got: %v", want, got)
 }
